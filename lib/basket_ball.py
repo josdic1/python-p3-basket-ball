@@ -182,3 +182,46 @@ def game_dict():
             ]
         }
     }
+
+def util_roster():
+    game = game_dict()
+    return game["home"]["players"] + game["away"]["players"]
+
+def util_team():
+    game = game_dict()
+    return game["home"], game["away"]
+
+def num_points_per_game(player):
+    roster = util_roster()
+    for item in roster:
+        if item["name"] == player:
+            return(item["points_per_game"])
+
+def player_age(player):
+    roster = util_roster()
+    for item in roster:
+        if player == item["name"]:
+            return item["age"]
+
+def team_colors(tname):
+    team_dict = util_team()
+    for team in team_dict:
+        if team["team_name"] == tname:
+            return team["colors"]
+
+def team_names():
+    pass
+
+def player_numbers():
+    pass
+
+def player_stats():
+    pass
+
+def average_rebounds_by_shoe_brand():
+    pass
+
+
+if __name__ == "__main__":
+    from pprint import pprint
+    pprint(game_dict())
