@@ -210,10 +210,14 @@ def team_colors(tname):
             return team["colors"]
 
 def team_names():
-    pass
+    ship_list = []
+    team_list = util_team()
+    for item in team_list:
+        ship_list.append(item["team_name"])
+    return ship_list
 
-def player_numbers():
-    pass
+def player_numbers(tname):
+    return tname
 
 def player_stats():
     pass
