@@ -217,13 +217,52 @@ def team_names():
     return ship_list
 
 def player_numbers(tname):
-    return tname
+    ship_list = []
+    for item in util_team():
+        if item["team_name"] == tname:
+            for player in item["players"]:
+                ship_list.append(player["number"])
+    return ship_list
 
-def player_stats():
-    pass
+def player_stats(pname):
+    roster = util_roster()
+    player_dict = {}
+    key_list = []
+    for item in roster:
+        if item["name"] == pname:
+            key_list = list(item.keys())
+            for k in key_list:
+                player_dict[k] = item[k]
+    return player_dict
 
 def average_rebounds_by_shoe_brand():
-    pass
+    shoes = []
+    roster = util_roster()
+    for item in roster:
+        shoes.append(item["shoe_brand"])
+    shoe_list = set(shoes)
+    return create_keys(shoe_list)
+
+
+def create_keys(list):
+    brand_dict = {}
+    roster = util_roster()
+    for player in roster:
+        brand = player["shoe_brand"]
+        rebs = player["rebounds_per_game"]
+
+        if brand not in brand_dict:
+            brand_dict[brand] = []
+        
+        brand_dict[brand].append(rebs)
+        
+    return ship_list(brand_dict)
+
+def ship_list(this_dict):
+    for brand in this_dict:
+        rebs = this_dict[brand]
+        avg = sum(rebs) / len(rebs)
+        print(f"{brand}:  {avg:.2f}")
 
 
 if __name__ == "__main__":
